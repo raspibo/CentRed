@@ -1,7 +1,7 @@
 CentRed
 =======
 Centralino di sicurezza "CentRed"
-(perche` ormai ho gia` chiamato l'altro ThermoRed e pensavo di mantenere una filosofia)
+(perche\` ormai ho gia\` chiamato l'altro ThermoRed e pensavo di mantenere una filosofia)
 
 Questo centralino deve svolgere funzioni di smistamento segnalazioni ed allarmi
 che pervengono da altri apparati elettrici (sensori di controllo e rilevamento,
