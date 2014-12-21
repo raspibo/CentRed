@@ -9,8 +9,8 @@ cgitb.enable()
 # Apro il database Redis con l'istruzione della mia libreria
 MyDB = fls.OpenDB()
 
-# Redis "key"
-RedisKey = "xmpp:list"
+# Account Redis "key"
+RedisKey = "config"
 
 
 # Uso l'intestazione "web" della mia libreria
@@ -19,12 +19,11 @@ print (mhl.MyHtml())
 
 form=cgi.FieldStorage()
 
-if "rpush" in form:
-    MyDB.rpush(RedisKey, cgi.escape(form["rpush"].value))
-if "lrem" in form:
-    MyDB.lrem(RedisKey, 0, cgi.escape(form["lrem"].value))
-    # Ho deciso di eliminare tutte le occorrenze
-    # In realta` il comando avrebbe molte piu` possibilita`.
+for i in ["attempts", "delay", "ttl"]:
+    if i not in form:
+        print ("<h3>Manca il valore: </h3>",i)
+    else:
+        MyDB.hset(RedisKey,i,cgi.escape(form[i].value))
 
 print ("<h2>Dati inseriti/modificati:</h2>")
 print ("<br>")
@@ -34,7 +33,7 @@ print ("<td>")
 print (RedisKey)
 print ("</td>")
 print ("<td>")
-print (MyDB.lrange(RedisKey,0,-1))
+print (MyDB.hgetall(RedisKey))
 print ("</td>")
 print ("</tr>")
 print ("</table>")

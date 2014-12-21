@@ -19,17 +19,23 @@ print (mhl.MyHtml())
 
 form=cgi.FieldStorage()
 
-Errore=0
-for i in ["key", "username", "password"]:
+for i in ["username", "password"]:
     if i not in form:
-        Errore = Errore+1
-        print ("Manca il valore:",i)
+        print ("<h3>Manca il valore: </h3>",i)
+    else:
+        MyDB.hset(RedisKey,i,cgi.escape(form[i].value))
 
-if Errore == 0:
-    MyDB.hmset(RedisKey, {"username":cgi.escape(form["username"].value), "password":cgi.escape(form["password"].value)})
-
-print ("<h2>Dati inseriti:</h2>")
+print ("<h2>Dati inseriti/modificati:</h2>")
 print ("<br>")
+print ("<table border=\"1\" cellspacing=\"0\" cellpadding=\"3\">")
+print ("<tr>")
+print ("<td>")
+print (RedisKey)
+print ("</td>")
+print ("<td>")
 print (MyDB.hgetall(RedisKey))
+print ("</td>")
+print ("</tr>")
+print ("</table>")
 
 print (mhl.MyEndForm())

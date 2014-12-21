@@ -11,7 +11,7 @@ cgitb.enable()
 MyDB = fls.OpenDB()
 
 # Redis "key"A
-RedisKey = "xmpp:list"
+RedisKey = "list:xmpp"
 
 
 if MyDB.llen(RedisKey) == 0:

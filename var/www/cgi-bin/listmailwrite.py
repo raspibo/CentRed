@@ -10,7 +10,7 @@ cgitb.enable()
 MyDB = fls.OpenDB()
 
 # Redis "key"
-RedisKey = "mail:list"
+RedisKey = "list:mail"
 
 
 # Uso l'intestazione "web" della mia libreria

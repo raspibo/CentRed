@@ -26,6 +26,13 @@ print ("<h3>Puoi aggiungerne o eliminarne solamente uno alla volta</h3>")
 print ("(Anche contemporaneamente, ma uno solo)")
 print ("<br>")
 print ("<br>")
+print ("Questa \"form\" e` ancora un problema da risolvere")
+print ("<br>")
+print ("Per ora ccontentiamoci di listare le possibilita`:")
+print ("<br>")
+print (MyDB.keys("list*"))
+print ("<br>")
+print ("<br>")
 
 print (mhl.MyActionForm("/cgi-bin/alertlistwrite.py","POST"))
 

@@ -43,7 +43,7 @@ def MyTextAreaForm(Name,Value,Cols,Rows,Required,Readonly):
 def MyNumberForm(Name,Value,Size,Maxlenght,Min,Max,Required,Readonly):
     return("<input type=\"number\" name=\""+Name+"\" value=\""+Value+"\" size=\""+Size+"\" maxlenght=\""+Maxlenght+"\" min=\""+Min+"\" max=\""+Max+"\" "+Required+" "+Readonly+">")
 
-def MyCheckBox(Name,Value):
+def MyCheckboxForm(Name,Value,Required,Readonly):
     return("<input type=\"checkbox\" name=\""+Name+"\" value=\""+Value+"\" "+Required+" "+Readonly+">")
 
 def MyRadioButton(Name,Value):

@@ -26,6 +26,13 @@ print ("<h3>Puoi aggiungerne o eliminarne solamente uno alla volta</h3>")
 print ("(Anche contemporaneamente, ma uno solo)")
 print ("<br>")
 print ("<br>")
+print ("Questa \"form\" e` ancora un problema da risolvere")
+print ("<br>")
+print ("Per ora ccontentiamoci di listare le possibilita`:")
+print ("<br>")
+print (MyDB.keys("list*"))
+print ("<br>")
+print ("<br>")
 
 print (mhl.MyActionForm("/cgi-bin/alarmlistwrite.py","POST"))
 
@@ -49,6 +56,18 @@ for i in range(len(Lists)):
     print (mhl.MyTextForm("lists",Lists[i].decode('unicode_escape'),"40","required","readonly"))
     print ("</td>")
     print ("</tr>")
+
+"""
+for i in range(len(Lists)):
+    print ("<tr>")
+    print ("<td>")
+    print ("Value: ")
+    print ("</td>")
+    print ("<td>")
+    print (mhl.MyCheckboxForm("checkbox"+i,Lists[i].decode('unicode_escape'),"40","required","readonly"))
+    print ("</td>")
+    print ("</tr>")
+"""
 
 print ("<tr>")
 print ("<td>")

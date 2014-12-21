@@ -11,7 +11,7 @@ cgitb.enable()
 MyDB = fls.OpenDB()
 
 # Redis "key"A
-RedisKey = "mail:list"
+RedisKey = "list:mail"
 
 
 if MyDB.llen(RedisKey) == 0:
