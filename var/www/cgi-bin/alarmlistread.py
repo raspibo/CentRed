@@ -10,21 +10,24 @@ cgitb.enable()
 # Apro il database Redis con l'istruzione della mia libreria
 MyDB = fls.OpenDB()
 
-# Account Redis "key"
-RedisKey = "account:xmpp"
+# Redis "key"A
+RedisKey = "alarm:list"
 
-if MyDB.hlen(RedisKey) == 0:
-    Username = b"vuoto"
-    #Password = b"vuota"
+
+if MyDB.llen(RedisKey) == 0:
+    Lists = ''
 else:
-    Username = MyDB.hget(RedisKey,"username")
-    #Password = MyDB.hget(RedisKey,"password")
+    Lists = MyDB.lrange(RedisKey,0,-1)
 
 # Uso l'intestazione "web" della mia libreria
 print (mhl.MyHtml())
 
+print ("<h3>Puoi aggiungerne o eliminarne solamente uno alla volta</h3>")
+print ("(Anche contemporaneamente, ma uno solo)")
+print ("<br>")
+print ("<br>")
 
-print (mhl.MyActionForm("/cgi-bin/accountxmppwrite.py","POST"))
+print (mhl.MyActionForm("/cgi-bin/alarmlistwrite.py","POST"))
 
 print ("<table>")
 
@@ -37,27 +40,36 @@ print (mhl.MyTextForm("key",RedisKey,"40","required","readonly"))
 print ("</td>")
 print ("</tr>")
 
+for i in range(len(Lists)):
+    print ("<tr>")
+    print ("<td>")
+    print ("Value: ")
+    print ("</td>")
+    print ("<td>")
+    print (mhl.MyTextForm("lists",Lists[i].decode('unicode_escape'),"40","required","readonly"))
+    print ("</td>")
+    print ("</tr>")
+
 print ("<tr>")
 print ("<td>")
-print ("Username: ")
+print ("Aggiungi: ")
 print ("</td>")
 print ("<td>")
-print (mhl.MyTextForm("username",Username.decode('unicode_escape'),"40","required",""))
+print (mhl.MyTextForm("rpush","","40","",""))
 print ("</td>")
 print ("</tr>")
 
 print ("<tr>")
 print ("<td>")
-print ("Password: ")
+print ("Elimina: ")
 print ("</td>")
 print ("<td>")
-print (mhl.MyPasswordForm("password","password"))
-#print (mhl.MyTextForm("password",Password.decode('unicode_escape'),"40","required",""))
+print (mhl.MyTextForm("lrem","","40","",""))
 print ("</td>")
 print ("</tr>")
 
 print ("<tr>")
-print ("<td colspan=\"2\">")
+print ("<td colspan=\"4\">")
 print ("<hr/>")
 print ("</td>")
 print ("</tr>")

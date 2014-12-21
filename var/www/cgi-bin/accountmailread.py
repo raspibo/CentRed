@@ -11,20 +11,20 @@ cgitb.enable()
 MyDB = fls.OpenDB()
 
 # Account Redis "key"
-Account = "account:mail"
+RedisKey = "account:mail"
 
-if MyDB.hlen(Account) == 0:
+if MyDB.hlen(RedisKey) == 0:
     Username = b"vuoto"
     #Password = b"vuota"
     Mailfrom = b"vuota"
     ServerSMTP = b"vuoto"
     Port = b"0"
 else:
-    Username = MyDB.hget(Account,"username")
-    #Password = MyDB.hget(Account,"password")
-    Mailfrom = MyDB.hget(Account,"mailfrom")
-    ServerSMTP = MyDB.hget(Account,"serversmtp")
-    Port = MyDB.hget(Account,"port")
+    Username = MyDB.hget(RedisKey,"username")
+    #Password = MyDB.hget(RedisKey,"password")
+    Mailfrom = MyDB.hget(RedisKey,"mailfrom")
+    ServerSMTP = MyDB.hget(RedisKey,"serversmtp")
+    Port = MyDB.hget(RedisKey,"port")
 
 
 # Uso l'intestazione "web" della mia libreria
@@ -40,7 +40,7 @@ print ("<td>")
 print ("Key: ")
 print ("</td>")
 print ("<td>")
-print (mhl.MyTextForm("key",Account,"40","required","readonly"))
+print (mhl.MyTextForm("key",RedisKey,"40","required","readonly"))
 print ("</td>")
 print ("</tr>")
 

@@ -9,6 +9,10 @@ cgitb.enable()
 # Apro il database Redis con l'istruzione della mia libreria
 MyDB = fls.OpenDB()
 
+# Account Redis "key"
+RedisKey = "account:mail"
+
+
 # Uso l'intestazione "web" della mia libreria
 print (mhl.MyHtml())
 
@@ -22,10 +26,10 @@ for i in ["key", "username", "password", "mailfrom", "serversmtp", "port"]:
         print ("Manca il valore:",i)
 
 if Errore == 0:
-    MyDB.hmset("account:mail", {"username":cgi.escape(form["username"].value), "password":cgi.escape(form["password"].value), "mailfrom":cgi.escape(form["mailfrom"].value), "serversmtp":cgi.escape(form["serversmtp"].value), "port":cgi.escape(form["port"].value)})
+    MyDB.hmset(RedisKey, {"username":cgi.escape(form["username"].value), "password":cgi.escape(form["password"].value), "mailfrom":cgi.escape(form["mailfrom"].value), "serversmtp":cgi.escape(form["serversmtp"].value), "port":cgi.escape(form["port"].value)})
 
 print ("<h2>Dati inseriti:</h2>")
 print ("<br>")
-print (MyDB.hgetall("account:mail"))
+print (MyDB.hgetall(RedisKey))
 
 print (mhl.MyEndForm())
