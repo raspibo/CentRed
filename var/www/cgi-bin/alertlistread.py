@@ -22,15 +22,8 @@ else:
 # Uso l'intestazione "web" della mia libreria
 print (mhl.MyHtml())
 
-print ("<h3>Puoi aggiungerne o eliminarne solamente uno alla volta</h3>")
-print ("(Anche contemporaneamente, ma uno solo)")
-print ("<br>")
-print ("<br>")
-print ("Questa \"form\" e` ancora un problema da risolvere")
-print ("<br>")
-print ("Per ora ccontentiamoci di listare le possibilita`:")
-print ("<br>")
-print (MyDB.keys("list*"))
+print ("<h3>Selezione delle liste di invio messaggi di avviso</h3>")
+print ("Possono essere aggiunte/eliminate contemporaneamente, ma una sola lista alla volta")
 print ("<br>")
 print ("<br>")
 
@@ -59,21 +52,34 @@ for i in range(len(Lists)):
 
 print ("<tr>")
 print ("<td>")
-print ("Aggiungi: ")
+print ("Aggiungi lista: ")
 print ("</td>")
 print ("<td>")
-print (mhl.MyTextForm("rpush","","40","",""))
+#print (mhl.MyTextForm("rpush","","40","",""))
+Keys = MyDB.keys("list*")
+print ("<select name=\"rpush\">")
+print ("<option value=\"""\"> </option>")
+for i in range(len(Keys)):
+    KeyValue = Keys[i-1].decode('unicode_escape')
+    print ("<option value=\""+KeyValue+"\">"+KeyValue+"</option>")
+print ("</select>")
+
 print ("</td>")
 print ("</tr>")
 
 print ("<tr>")
 print ("<td>")
-print ("Elimina: ")
+print ("Elimina lista: ")
 print ("</td>")
 print ("<td>")
-print (mhl.MyTextForm("lrem","","40","",""))
-print ("</td>")
-print ("</tr>")
+#print (mhl.MyTextForm("lrem","","40","",""))
+Keys = MyDB.keys("list*")
+print ("<select name=\"lrem\">")
+print ("<option value=\"""\"> </option>")
+for i in range(len(Keys)):
+    KeyValue = Keys[i-1].decode('unicode_escape')
+    print ("<option value=\""+KeyValue+"\">"+KeyValue+"</option>")
+print ("</select>")
 
 print ("<tr>")
 print ("<td colspan=\"4\">")
@@ -91,3 +97,4 @@ print ("</tr>")
 
 print ("</table>")
 print (mhl.MyEndForm())
+print (mhl.MyHtmlBottom())

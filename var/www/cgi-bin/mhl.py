@@ -3,6 +3,11 @@
 ## My HTML Library
 #
 
+""" ATTENZIONE: Non tutte le funzioni sono state testate/usate
+    alcune neanche fatte
+"""
+
+
 # Html page
 def MyHtml():
     return "Content-type: text/html\n\n"
@@ -43,13 +48,17 @@ def MyTextAreaForm(Name,Value,Cols,Rows,Required,Readonly):
 def MyNumberForm(Name,Value,Size,Maxlenght,Min,Max,Required,Readonly):
     return("<input type=\"number\" name=\""+Name+"\" value=\""+Value+"\" size=\""+Size+"\" maxlenght=\""+Maxlenght+"\" min=\""+Min+"\" max=\""+Max+"\" "+Required+" "+Readonly+">")
 
-def MyCheckboxForm(Name,Value,Required,Readonly):
-    return("<input type=\"checkbox\" name=\""+Name+"\" value=\""+Value+"\" "+Required+" "+Readonly+">")
+def MyCheckboxForm(Name,Value):
+    return("<input type=\"checkbox\" name=\""+Name+"\" value=\""+Value+"\">")
 
 def MyRadioButton(Name,Value):
     pass	# Questa puo` avere svariati valori ... e` da pensarci su.
 
 def MyDropDown(Name,Value):
+    # Il problema, a parte che non so passare l'array (anche se credo sia array[])
+    # e` che i parametri sarebbero comunque da manipolare per questo specifico
+    # caso, non risulterebbe comunque una funzione generica e riutilizzabile in un
+    # altro contesto ... (credo).
     pass	# Questa volta value deve essere un array ... 
 
 def MyPasswordForm(Type,Name):  # Se c'e`, e` sempre richiesta di sicuro
