@@ -137,7 +137,7 @@ if len(Msg) != 0:
     print ("<hr/>")
     print ("<br>")
 
-Msg = (MyDB.keys(RedisKey+"*"))  # msg:*
+Msg = (MyDB.keys("new:"+RedisKey+"*"))  # msg:*
 if len(Msg) != 0:
     print (mhl.MyActionForm("/cgi-bin/messagewrite.py","POST"))
     print ("<table>")

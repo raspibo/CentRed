@@ -8,5 +8,5 @@ che pervengono da altri apparati elettrici (sensori di controllo e rilevamento,
 altre centrali di controllo, per esempio 'ThermoRed', ecc.ecc.).
 
 Praticamente deve mandare i messaggi che gli arrivano (in un formato "particolare")
-ad una o piu` persone, utilizzando varie modalita` (per ora mail e messaggi istantanei
+ad una o piu\` persone, utilizzando varie modalita\` (per ora mail e messaggi istantanei
 con protocollo xmpp).

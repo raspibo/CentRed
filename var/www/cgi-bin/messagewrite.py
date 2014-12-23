@@ -29,7 +29,7 @@ if "key" in form:
         MyDB.rename(OldKey,NewKey)
         #MyDB.expire(NewKey,3600)        # Per ora metto un'ora, perche` sto` facendo le prove
         #MyDB.expire(NewKey,86400)      # 24 ore
-        MyDB.expire(NewKey,86400*MyDB.hget("config","ttl"))    # 24h (1g) * TTL in configurazione
+        MyDB.expire(NewKey,86400 * int(MyDB.hget("config","ttl").decode('unicode_escape')))    # 24h (1g) * TTL in configurazione
 else:
     print("Nessuna modifica ..")
 

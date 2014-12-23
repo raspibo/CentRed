@@ -115,7 +115,6 @@ def Decode(TxT):
 # Apro il database Redis con l'istruzione della mia libreria
 MyDB = fls.OpenDB()
 
-Var = 0
 # Da qua in avanti le operazioni sono da eseguire in ciclica
 while True:
     Msg = MyDB.keys("msg:*")	# Leggo se ci sono messaggi
@@ -132,5 +131,3 @@ while True:
             t = Thread(target=InviaMessaggi, args=(NewMsg,int(Decode(MyDB.hget("config","attempts"))),int(Decode(MyDB.hget("config","delay")))))
             t.start()
     time.sleep(10)      # ritardo prima di un successivo controllo allarmi
-    Var = Var + 1
-    print ("Re-Loop", Var)
