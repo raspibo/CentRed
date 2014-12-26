@@ -86,13 +86,17 @@ server {
 	include /etc/nginx/fastcgi.conf;
 
 	# Protections
-	location ~ /(\.|config.json|config.txt|config.info|password.json|password.txt|password.info) {
+	location ~ /(\.|config.json|config.txt|config.info|password.json|password.txt|password.info|htpasswd) {
 		deny all;
 	}
 	# Questa sotto non sembra funzionare .. da verificare.
 	location ~* \.(cgi|py|sh|lua)\$ {
 		return 444;
 	}
+
+        # Auth
+        auth_basic "mysiteauth";
+        auth_basic_user_file /var/www/.htpasswd;
 }
 
 
