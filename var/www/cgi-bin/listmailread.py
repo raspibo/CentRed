@@ -27,7 +27,7 @@ print ("(Anche contemporaneamente, ma un'indirizzo solo)")
 print ("<br>")
 print ("<br>")
 
-print (mhl.MyActionForm("/cgi-bin/maillistwrite.py","POST"))
+print (mhl.MyActionForm("/cgi-bin/listmailwrite.py","POST"))
 
 print ("<table>")
 

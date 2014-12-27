@@ -11,7 +11,7 @@ cgitb.enable()
 MyDB = fls.OpenDB()
 
 # Redis "key"A
-RedisKey = "list:xmpp"
+RedisKey = "list:sip"
 
 
 if MyDB.llen(RedisKey) == 0:
@@ -27,7 +27,7 @@ print ("(Anche contemporaneamente, ma un'indirizzo solo)")
 print ("<br>")
 print ("<br>")
 
-print (mhl.MyActionForm("/cgi-bin/listxmppwrite.py","POST"))
+print (mhl.MyActionForm("/cgi-bin/listsipwrite.py","POST"))
 
 print ("<table>")
 
