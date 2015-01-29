@@ -13,14 +13,26 @@ MyDB = fls.OpenDB()
 # Account Redis "key"
 RedisKey = "config"
 
-if MyDB.hlen(RedisKey) == 0:
-    Attempts = b"1"
-    Delay = b"1"
-    TTL = b"1"
-else:
+# Controllo ogni valore
+if MyDB.hexists(RedisKey,"attempts"):
     Attempts = MyDB.hget(RedisKey,"attempts")
+else:
+    Attempts = b"1"
+
+if MyDB.hexists(RedisKey,"delay"):
     Delay = MyDB.hget(RedisKey,"delay")
+else:
+    Delay = b"1"
+
+if MyDB.hexists(RedisKey,"ttl"):
     TTL = MyDB.hget(RedisKey,"ttl")
+else:
+    TTL = b"1"
+
+if MyDB.hexists(RedisKey,"tcycle"):
+    TCycle = MyDB.hget(RedisKey,"tcycle")
+else:
+    TCycle = b"1"
 
 
 # Uso l'intestazione "web" della mia libreria
@@ -42,7 +54,7 @@ print ("</tr>")
 
 print ("<tr>")
 print ("<td>")
-print ("Nr. tentativi d'invio: ")
+print ("Nr. tentativi d'invio per messaggio: ")
 print ("</td>")
 print ("<td>")
 print (mhl.MyNumberForm("attempts",Attempts.decode('unicode_escape'),"3","3","1","100","required",""))
@@ -60,10 +72,19 @@ print ("</tr>")
 
 print ("<tr>")
 print ("<td>")
-print ("Tempo di sopravvivenza in archivio degli avvisi (giorni): ")
+print ("Tempo di permanenza in archivio degli avvisi (giorni): ")
 print ("</td>")
 print ("<td>")
 print (mhl.MyNumberForm("ttl",TTL.decode('unicode_escape'),"3","3","1","365","required",""))
+print ("</td>")
+print ("</tr>")
+
+print ("<tr>")
+print ("<td>")
+print ("Tempo di funzione ciclica controllo nuovi messaggi (secondi): ")
+print ("</td>")
+print ("<td>")
+print (mhl.MyNumberForm("tcycle",TCycle.decode('unicode_escape'),"2","2","1","60","required",""))
 print ("</td>")
 print ("</tr>")
 

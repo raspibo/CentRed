@@ -162,4 +162,4 @@ while True:
                 # Vediamo se ho capito come si usa il threading ...
                 t = Thread(target=InviaMessaggi, args=(NewMsg,int(Decode(MyDB.hget("config","attempts"))),int(Decode(MyDB.hget("config","delay")))))
                 t.start()
-    time.sleep(10)      # ritardo prima di un successivo controllo allarmi
+    time.sleep(int(Decode(MyDB.hget("config","tcycle"))))      # ritardo prima di un successivo controllo allarmi, leggo il tempo dalla configurazione

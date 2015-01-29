@@ -22,9 +22,10 @@ form=cgi.FieldStorage()
 if "key" in form:
     for i in range(len(MyDB.keys(cgi.escape(form["key"].value)+"*"))):
         # Non capisco l'indice, sembra che cambi ... 
-        OldKey = (MyDB.keys(cgi.escape(form["key"].value)+"*")[0]).decode('unicode_escape')   # il -1 !!! ricordati
+        OldKey = (MyDB.keys(cgi.escape(form["key"].value)+"*")[0]).decode('unicode_escape')
         # il [4:] serve per eliminare il new:
-        NewKey = ("old:"+OldKey[4:]+":"+time.strftime("%Y%m%d%H%M%S", time.localtime()))
+        #NewKey = ("old:"+OldKey[4:]+":"+time.strftime("%Y%m%d%H%M%S", time.localtime()))
+        NewKey = ("old:"+OldKey[4:])
         print ("<b>Renamed</b> ", OldKey," <b>to</b> ",NewKey,"<br>")
         #print (time.strftime("%Y/%m/%d %H:%M:%S", time.localtime()))
         MyDB.rename(OldKey,NewKey)

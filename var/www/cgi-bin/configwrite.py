@@ -19,7 +19,7 @@ print (mhl.MyHtml())
 
 form=cgi.FieldStorage()
 
-for i in ["attempts", "delay", "ttl"]:
+for i in ["attempts", "delay", "ttl", "tcycle"]:
     if i not in form:
         print ("<h3>Manca il valore: </h3>",i)
     else:

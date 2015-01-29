@@ -20,7 +20,8 @@ RedisKey = "msg"
 
 # Uso l'intestazione "web" della mia libreria
 print (mhl.MyHtml())
-print ("<meta http-equiv=\"refresh\" content=\"10\">")  # Aggiornamento/Reload pagina ogni 10"
+Refresh = Decode(MyDB.hget("config","tcycle"))     # Aggiornamento/Reload pagina sincronizzato col tempo ciclo messaggi
+print ("<meta http-equiv=\"refresh\" content=\""+Refresh+"\">")
 
 Msg = (MyDB.keys(RedisKey+"*"))  # msg:*
 if len(Msg) != 0:       # Se ci sono messaggi da visualizzare ..
