@@ -37,7 +37,7 @@ else:
 
 # Uso l'intestazione "web" della mia libreria
 print (mhl.MyHtml())
-
+print (mhl.MyHtmlHead())
 
 print (mhl.MyActionForm("/cgi-bin/configwrite.py","POST"))
 

@@ -21,6 +21,7 @@ else:
 
 # Uso l'intestazione "web" della mia libreria
 print (mhl.MyHtml())
+print (mhl.MyHtmlHead())
 
 print ("<h3>Selezione delle liste di invio messaggi di allarme</h3>")
 print ("Possono essere aggiunte/eliminate contemporaneamente, ma una sola lista alla volta")

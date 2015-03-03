@@ -15,7 +15,7 @@ RedisKey = "account:mail"
 
 # Uso l'intestazione "web" della mia libreria
 print (mhl.MyHtml())
-
+print (mhl.MyHtmlHead())
 
 form=cgi.FieldStorage()
 

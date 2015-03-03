@@ -21,6 +21,7 @@ else:
 
 # Uso l'intestazione "web" della mia libreria
 print (mhl.MyHtml())
+print (mhl.MyHtmlHead())
 
 print ("<h3>Puoi aggiungerne o eliminarne solamente uno alla volta</h3>")
 print ("(Anche contemporaneamente, ma un'indirizzo solo)")
