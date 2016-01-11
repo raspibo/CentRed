@@ -24,6 +24,8 @@ if [ -x $DirExeCentRed/$ExeCentRed ]
     then
         cd $DirExeCentRed
         python3 $ExeCentRed &
+	sleep 2
+	redis-cli hmset msg:redis:alive:$(date +\%Y\%m\%d\%H\%M\%S) type "alert" desc "Centralina avviata .." value "on" um "" date "$(date +\%Y/\%m/\%d\ \%H:\%M:\%S)"
     else
         echo "Errore! CentRed non si e\` avviato"
 fi
