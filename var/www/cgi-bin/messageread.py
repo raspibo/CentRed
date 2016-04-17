@@ -20,10 +20,62 @@ RedisKey = "msg"
 
 # Uso l'intestazione "web" della mia libreria
 print (mhl.MyHtml())
-print (mhl.MyHtmlHead())
+#print (mhl.MyHtmlHead())
+print ("""
+<html>
 
+<head>
+  <title>Centralino sicurezza</title>
+  <meta name="GENERATOR" content="Midnight Commander (mcedit)">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="Keywords" content="centralino, sicurezza, allarme, python">
+  <meta name="Author" content="Davide">
+""")
 Refresh = Decode(MyDB.hget("config","tcycle"))     # Aggiornamento/Reload pagina sincronizzato col tempo ciclo messaggi
 print ("<meta http-equiv=\"refresh\" content=\""+Refresh+"\">")
+print ("""
+</head>
+
+<body>
+""")
+
+# Force Reload button
+
+print ("<table>")   # 3 colonne
+
+print ("<tr>")
+print ("<td>")
+#print ("")
+print ("</td>")
+print ("<td>")
+#print ("")
+print ("</td>")
+print ("<td>")
+#print ("")
+print ("</td>")
+print ("</tr>")
+
+print ("<tr>")
+print ("<td colspan=\"3\">")
+#print ("<hr/>") # La linea orizzontale
+print ("</td>")
+print ("</tr>")
+
+print ("<tr>")
+print ("<td>")
+print ("")  # Testo nella 1a colonna
+print ("</td>")
+print ("<td>")
+print ("<button type=\"button\" onclick='location.href=\"/cgi-bin/messageread.py\"'>Force Reload</button>")
+print ("</td>")
+print ("<td>")
+print ("")  # Testo nella 3a colonna
+print ("</td>")
+print ("</tr>")
+
+print ("</table>")
+# End force reload
+
 
 Msg = (MyDB.keys(RedisKey+"*"))  # msg:*
 if len(Msg) != 0:       # Se ci sono messaggi da visualizzare ..
