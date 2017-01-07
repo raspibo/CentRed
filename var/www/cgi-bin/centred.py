@@ -114,7 +114,8 @@ def InviaMessaggi(NewMsg,Attempts,Delay):
                         FileAlarm = open("alarm.txt","w")
                         FileAlarm.write(Decode(MyDB.hget(NewMsg,"desc")))
                         FileAlarm.close()
-                        os.system("text2wave -F 8000 -eval \"(language_italian)\" -otype wav -o /usr/share/asterisk/sounds/en/alarm.wav alarm.txt")
+                        #os.system("text2wave -F 8000 -eval \"(language_italian)\" -otype wav -o /usr/share/asterisk/sounds/en/alarm.wav alarm.txt")
+                        os.system("text2wave -F 8000 -eval \"(voice_lp_diphone)\" -scale 1 -otype wav -o /usr/share/asterisk/sounds/en/alarm.wav alarm.txt")
                         shutil.copyfile("autodial","/var/spool/asterisk/outgoing/autodial")
                 if Decode(MyDB.lindex(Lista,j)) == "list:xmpp":
                     for k in range(MyDB.llen("list:xmpp")):     # per ogni destinatario
