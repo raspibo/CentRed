@@ -15,4 +15,16 @@ con protocollo xmpp).
 MEMO:
 
 Comandi usati per copia su repository git:
+  sudo cp -varpu --parents /etc/asterisk/extensions.conf .
+  sudo cp -varpu --parents /etc/asterisk/sip.conf .
+  cp -varpu --parents /etc/nginx/myfastcgi.conf .
+  cp -varpu --parents /etc/nginx/sites-available/mysite .
+  cp -varpu --parents /etc/nginx/sites-enabled/mysite .
+  sudo cp -varpu --parents /etc/redis/redis.conf .
+  cp -varpu --parents /etc/rc.local .
+  sudo cp -varpu --parents /var/spool/cron/crontabs/pi .
   cp -varpu --parents /var/www/ .
+  # Alcuni files necessitano un cambio di proprietario
+  sudo chown pi:pi -R .
+  # Aggiungere tutti i files al repository git
+  git add --all *

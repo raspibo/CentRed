@@ -18,16 +18,20 @@ if [ "$_IP" ]; then
 fi
 
 # Start "CentRed"
-DirExeCentRed="/var/www/cgi-bin/"
-ExeCentRed="centred.py"
-if [ -x $DirExeCentRed/$ExeCentRed ]
-    then
-        cd $DirExeCentRed
-        python3 $ExeCentRed &
-	sleep 2
-	redis-cli hmset msg:redis:alive:$(date +\%Y\%m\%d\%H\%M\%S) type "alert" desc "Centralina avviata .." value "on" um "" date "$(date +\%Y/\%m/\%d\ \%H:\%M:\%S)"
-    else
-        echo "Errore! CentRed non si e\` avviato"
+DAEMON_NAME=centred  # senza .py
+PID=`ps -e -o pid,cmd | grep "$DAEMON_NAME[.]py" | awk '{ print $1 }'`
+if [ $PID ]
+        then
+                echo "Non si e\` avviato \"$DAEMON_NAME\", oppure era gia\` avviato:"
+                echo "Actual PID is: $PID"
+        else
+                echo "Avvio $DAEMON_NAME .."
+                #su pi -c "python3 /var/www/cgi-bin/centred.py &"
+                python3 /var/www/cgi-bin/centred.py &  # deve essere 'root'
+                # .. e un messaggio a se stesso quando si [ri]avvia
+                sleep 2  # un po` di ritardo
+                redis-cli -h centred hmset msg:alert:level1:$(date +\%Y\%m\%d\%H\%M\%S) type "alert" desc "Avvio centralino allarmi CentRed" value "on" um "" date "$(date +\%Y/\%m/\%d\ \%H:\%M:\%S)"
+                cd /
 fi
 
 exit 0

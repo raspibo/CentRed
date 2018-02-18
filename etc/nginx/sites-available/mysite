@@ -83,7 +83,7 @@ server {
 
 	# *** ADDED ***
 	# fast cgi support
-	include /etc/nginx/fastcgi.conf;
+	include /etc/nginx/myfastcgi.conf;
 
 	# Protections
 	location ~ /(\.|config.json|config.txt|config.info|password.json|password.txt|password.info|htpasswd) {
