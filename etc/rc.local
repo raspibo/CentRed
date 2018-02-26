@@ -30,7 +30,7 @@ if [ $PID ]
                 python3 /var/www/cgi-bin/centred.py &  # deve essere 'root'
                 # .. e un messaggio a se stesso quando si [ri]avvia
                 sleep 2  # un po` di ritardo
-                redis-cli -h centred hmset msg:alert:level1:$(date +\%Y\%m\%d\%H\%M\%S) type "alert" desc "Avvio centralino allarmi CentRed" value "on" um "" date "$(date +\%Y/\%m/\%d\ \%H:\%M:\%S)"
+                redis-cli -h centred hmset msg:centred:start:$(date +\%Y\%m\%d\%H\%M\%S) type "alert" desc "Avvio centralino allarmi CentRed" value "on" um "" date "$(date +\%Y/\%m/\%d\ \%H:\%M:\%S)"
                 cd /
 fi
 
